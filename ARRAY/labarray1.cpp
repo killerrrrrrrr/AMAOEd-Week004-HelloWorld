@@ -3,10 +3,10 @@
 using namespace std;
 
 int main() {
-    int n[5];
+    int n[6];
 
     //Get user input
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 6; i++) {
         cout << "Enter number [" << i + 1 << "]: ";
         cin >> n[i];
     }
@@ -14,7 +14,7 @@ int main() {
 
     // Display back to user
     cout << "The entered numbers are: " << endl;
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i < 6; ++i) {
         cout << n[i] << endl;
     }
     cout << endl;
