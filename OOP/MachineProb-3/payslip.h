@@ -2,8 +2,15 @@
 #include <string>
 #include <cstdlib>
 #include <iomanip>
+#include <locale>
 
 using namespace std;
+
+class WithCommas : public numpunct<char> {
+protected:
+    string do_grouping() const { return "\003"; }
+};
+
 
 class Payslip {
     private:
@@ -109,33 +116,25 @@ class Payslip {
 
         void displayPayslip () {
 
+
             determinePayGradeAndTaxRate();
             computePay();
-
-             if (overTimeHours < 1 && basicSalary < 10000) {
-
-
-            cout << "Minimum overtime hours is 1 hour. " << endl;
-            cout << "Basic salary should not be less than 10,000." << endl;
-            return;
-           
-
-             } else {
-
-                
             cout << fixed << setprecision(2);
+            locale customLocale(locale(), new WithCommas);
+            cout.imbue(customLocale);
             
-            cout << "\nEmployee Payslip\n";
+
+            cout << "\n------- Employee Payslip -------\n" << endl;
             cout << "Employee Name      :  " << mName << endl;
-            cout << "Basic Salary       :  Php " << basicSalary << endl;
+            cout << "Basic Salary       :  " << "Php " << basicSalary << endl;
             cout << "Pay Grade          :  " << payGrade << endl;
             cout << "No. of OT Hours    :  " << overTimeHours << endl;
-            cout << "OT Pay             :  Php " << overTimePay << endl;
-            cout << "Gross Pay          :  Php " << grossPay << endl;
-            cout << "Withholding Tax    :  Php " << withHoldingTax << endl;
-            cout << "Net Pay            :  Php " << netPay << endl;
+            cout << "OT Pay             :  " << "Php " << overTimePay << endl;
+            cout << "Gross Pay          :  " << "Php " << grossPay << endl;
+            cout << "Withholding Tax    :  " << "Php " << withHoldingTax << endl;
+            cout << "Net Pay            :  " << "Php " << netPay << endl;
                
-            }
+
         }
 };
 
